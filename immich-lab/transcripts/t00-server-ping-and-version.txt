@@ -1,0 +1,9 @@
+$ curl -s http://localhost:2283/api/server/ping
+{"res":"pong"}
+$ curl -s http://localhost:2283/api/server/version
+{
+    "major": 3,
+    "minor": 3,
+    "patch": 5,
+    "prerelease": null
+}

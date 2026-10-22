@@ -1,0 +1,99 @@
+The lab — four services that are not containers
+====================================================================
+
+The lab is the project's own software, run
+without the box it usually ships in. The
+build machine sits in a kernel sandbox that
+refuses the namespace-joining call (setns)
+every container runtime needs, so Docker —
+and runc, tried directly — failed before
+any container's first process:
+
+    runc create failed: ... mount source
+    thread: join container mntns: setns:
+    operation not permitted
+
+The four published images were therefore
+fetched and run the plain way:
+
+  * Downloaded blob by blob from ghcr.io
+    with a resumable script, after the
+    registry's rate limiting defeated
+    ordinary pulls; every blob's size was
+    checked against the image manifest.
+  * Each image's own filesystem was
+    mounted with its own /proc and /dev,
+    bound to the same data folders the
+    official docker-compose.yml names,
+    and started with the image's own
+    entrypoint, environment, and order of
+    birth, all four sharing the host
+    network and finding each other at
+    127.0.0.1, exactly as the lab .env in
+    chapter 3 describes.
+  * The database and cache data folders
+    sat on throwaway memory-backed storage
+    (their entrypoints adjust ownership in
+    ways the sandbox's filesystem refuses);
+    the photo library sat on disk, where
+    transcript t06 inspects it.
+
+Versions, exactly as tested:
+
+    immich-server            v3.3.5
+      amd64 manifest sha256:1ab81816384c...
+    immich-machine-learning   v3.3.5
+      amd64 manifest sha256:1270449e47e1...
+    postgres                 14-vectorchord0.4.3-pgvectors0.2.0
+                             (the image the official file names)
+    valkey                   9 (the official file's cache image)
+
+What the lab did, in one breath: the
+database initialised and accepted
+connections; the cache answered; the
+machine-learning service answered its ping;
+the server ran its full migration chain
+with no errors and answered /api/server/
+ping and /api/server/version for 3.3.5.
+Then the scripted session in
+immich-lab/transcripts/ ran: admin sign-up,
+sign-in, one specimen photo uploaded and
+read back with its server-given identity,
+its checksum matching the file on disk,
+a duplicate upload refused as a duplicate,
+and a folder of specimen photos attached
+as an external library and scanned in.
+
+The lab's honest negatives, which the
+chapters repeat where they belong:
+
+  * Phone backup was not run — there was
+    no phone. Chapter 5 is the project's
+    own manual, checked against the
+    published OpenAPI spec, and says so.
+  * Machine-learning inference was not
+    completed. The upload did fire the
+    face-detection, OCR, and smart-search
+    job handlers, and a later re-queue was
+    accepted (HTTP 204) — but the service's
+    attempt to download its buffalo_l face
+    model failed in this sandbox, so no
+    face was ever detected and no embedding
+    was ever computed here. Chapter 7
+    describes the features from the
+    project's documentation and the
+    request the server was seen to send.
+  * No backup was restored. Chapter 8's
+    procedure is the project's documented
+    one; the two-jobs distinction it
+    teaches is visible in transcript t06,
+    where the database's folders and the
+    uploaded original sit side by side.
+
+Every fixture is invented: the admin
+(Marta Ellison, marta@example.com, password
+redacted in the transcripts) and the
+specimen photos — simple generated scenes
+with their captions burned in — were made
+on the build machine for this guide. No
+real person's data was anywhere near it.

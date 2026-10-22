@@ -1,0 +1,48 @@
+Immich commands — the cheat sheet
+====================================================================
+On a normal machine the stack is two files
+and one command (chapter 3). The API calls
+below are the ones this guide's lab ran
+against the real server; criteria.md keeps
+the ledger of which were run and which are
+the documented form.
+
+The standing install
+    docker compose up -d
+    docker compose ps
+    docker compose logs -f immich-server
+    docker compose down            (folders stay; containers go)
+    docker compose pull            (then up -d again, to upgrade)
+
+First look
+    curl http://localhost:2283/api/server/ping
+        -> {"res":"pong"}
+    curl http://localhost:2283/api/server/version
+        -> {"major":3,"minor":3,"patch":5,...}
+
+The API the apps use (Bearer token from
+/api/auth/login; see immich-lab/transcripts)
+    POST /api/auth/admin-sign-up   the first account (admin)
+    POST /api/auth/login           email + password -> token
+    POST /api/assets               multipart upload of one photo
+    GET  /api/assets/{id}          read one asset back
+    GET  /api/server/statistics    counts and bytes, per user
+    POST /api/libraries            create an external library
+    POST /api/libraries/{id}/scan  scan it now
+    GET  /api/libraries/{id}/statistics
+    POST /api/assets/jobs          re-run a per-asset job
+                                   (e.g. {"name":"refresh-faces"})
+
+Prove an upload landed (chapter 4's Check)
+    find <UPLOAD_LOCATION>/upload -type f
+    sha1sum <the file>             compare with the original
+
+The two backups (chapter 8; documented,
+rehearse before you need them)
+    automatic: the server dumps the database
+      daily at 2:00 AM to <UPLOAD_LOCATION>/
+      backups, keeping 14 — metadata only.
+    by hand:   pg_dump of the database,
+      then a copy of the upload/, profile/
+      and backups/ folders — database
+      first, files second, or server stopped.

@@ -1,0 +1,51 @@
+$ curl -s -X POST http://localhost:2283/api/libraries -H 'Authorization: Bearer <token>' -d '{"ownerId":"c4952bd3-eb78-481f-abf8-2f1fd3bda011","name":"Specimen archive","importPaths":["/mnt/archive"]}'
+{
+    "id": "c8e41a25-4851-49a2-b25a-a2e983a8a456",
+    "ownerId": "c4952bd3-eb78-481f-abf8-2f1fd3bda011",
+    "name": "Specimen archive",
+    "createdAt": "2026-10-22T03:53:05.883Z",
+    "updatedAt": "2026-10-22T03:53:05.883Z",
+    "refreshedAt": null,
+    "assetCount": 0,
+    "importPaths": [
+        "/mnt/archive"
+    ],
+    "exclusionPatterns": [
+        "**/@eaDir/**",
+        "**/._*",
+        "**/#recycle/**",
+        "**/#snapshot/**",
+        "**/.stversions/**",
+        "**/.stfolder/**"
+    ]
+}
+$ curl -s -X POST http://localhost:2283/api/libraries/c8e41a25-4851-49a2-b25a-a2e983a8a456/scan -H 'Authorization: Bearer <token>'
+HTTP 204
+(waiting 20s for the scan job)
+$ curl -s http://localhost:2283/api/libraries/c8e41a25-4851-49a2-b25a-a2e983a8a456/statistics -H 'Authorization: Bearer <token>'
+{
+    "photos": 1,
+    "videos": 0,
+    "usage": 30310,
+    "total": 1
+}
+$ curl -s http://localhost:2283/api/server/statistics -H 'Authorization: Bearer <token>' (after the scan)
+{
+    "photos": 2,
+    "videos": 0,
+    "usage": 21316,
+    "usagePhotos": 21316,
+    "usageVideos": 0,
+    "usageByUser": [
+        {
+            "userId": "c4952bd3-eb78-481f-abf8-2f1fd3bda011",
+            "userName": "Marta Ellison",
+            "photos": 2,
+            "videos": 0,
+            "usage": 21316,
+            "usagePhotos": 21316,
+            "usageVideos": 0,
+            "quotaSizeInBytes": null
+        }
+    ]
+}

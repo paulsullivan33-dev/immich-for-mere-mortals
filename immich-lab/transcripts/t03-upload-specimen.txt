@@ -1,0 +1,5 @@
+$ curl -s -X POST http://localhost:2283/api/assets -H 'Authorization: Bearer <token>' -F deviceAssetId=millpond-dawn-001 -F deviceId=lab-session -F fileCreatedAt=2024-06-15T06:12:00.000Z -F fileModifiedAt=2024-06-15T06:12:00.000Z -F 'assetData=@millpond-dawn.jpg'
+{
+    "id": "29ee7104-dfcd-4672-822c-99949643eb21",
+    "status": "created"
+}

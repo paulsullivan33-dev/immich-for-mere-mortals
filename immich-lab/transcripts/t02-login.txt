@@ -1,0 +1,11 @@
+$ curl -s -X POST http://localhost:2283/api/auth/login -d '{...}' (response below has the access token redacted)
+{
+  "accessToken": "<redacted>",
+  "userId": "c4952bd3-eb78-481f-abf8-2f1fd3bda011",
+  "userEmail": "marta@example.com",
+  "name": "Marta Ellison",
+  "isAdmin": true,
+  "profileImagePath": "",
+  "shouldChangePassword": true,
+  "isOnboarded": false
+}

@@ -1,0 +1,21 @@
+$ curl -s -X POST http://localhost:2283/api/auth/admin-sign-up -H 'Content-Type: application/json' -d '{"email":"marta@example.com","name":"Marta Ellison","password":"<redacted - invented lab password>"}'
+{
+    "id": "c4952bd3-eb78-481f-abf8-2f1fd3bda011",
+    "email": "marta@example.com",
+    "name": "Marta Ellison",
+    "profileImagePath": "",
+    "avatarColor": "primary",
+    "profileChangedAt": "2026-10-22T03:53:03.243Z",
+    "clusterGroupId": "36892a2d-f27f-4f7c-b6db-87fbef3635e0",
+    "storageLabel": "admin",
+    "shouldChangePassword": true,
+    "isAdmin": true,
+    "createdAt": "2026-10-22T03:53:03.243Z",
+    "deletedAt": null,
+    "updatedAt": "2026-10-22T03:53:03.243Z",
+    "oauthId": "",
+    "quotaSizeInBytes": null,
+    "quotaUsageInBytes": 0,
+    "status": "active",
+    "license": null
+}

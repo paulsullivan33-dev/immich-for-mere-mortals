@@ -1,0 +1,25 @@
+site_name: Immich for Mere Mortals
+site_description: Plain-language self-hosted photo and video backup with the shape of Google Photos and the files on your own disks. The four moving parts, installing with Docker Compose, phone backup, external libraries, face recognition and search, and the two backups that are not the same job.
+site_url: https://paulsullivan33-dev.github.io/immich-for-mere-mortals/
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Immich Is: what-immich-is.md
+  - The Four Moving Parts: the-four-moving-parts.md
+  - Installing with Docker Compose: installing-with-compose.md
+  - First Admin and Your Library: first-admin-and-library.md
+  - Phone Backup: phone-backup.md
+  - External Libraries: external-libraries.md
+  - Faces and Search: faces-and-search.md
+  - Backing Up: backing-up.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

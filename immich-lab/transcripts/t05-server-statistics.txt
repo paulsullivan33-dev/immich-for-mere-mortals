@@ -1,0 +1,20 @@
+$ curl -s http://localhost:2283/api/server/statistics -H 'Authorization: Bearer <token>'
+{
+    "photos": 1,
+    "videos": 0,
+    "usage": 21316,
+    "usagePhotos": 21316,
+    "usageVideos": 0,
+    "usageByUser": [
+        {
+            "userId": "c4952bd3-eb78-481f-abf8-2f1fd3bda011",
+            "userName": "Marta Ellison",
+            "photos": 1,
+            "videos": 0,
+            "usage": 21316,
+            "usagePhotos": 21316,
+            "usageVideos": 0,
+            "quotaSizeInBytes": null
+        }
+    ]
+}

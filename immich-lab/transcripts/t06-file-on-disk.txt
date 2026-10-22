@@ -1,0 +1,11 @@
+$ find <UPLOAD_LOCATION> -type f | sort
+./backups/.immich
+./encoded-video/.immich
+./library/.immich
+./profile/.immich
+./thumbs/.immich
+./upload/.immich
+./upload/c4952bd3-eb78-481f-abf8-2f1fd3bda011/d4/5b/d45b7d87-4902-4bd9-a6f1-13470aaf220f.jpg
+$ sha1sum of the specimen as sent, and of the file the server stored
+67d57d7b732511f548fa35413de26f01d40fe9c9  /home/hatch/workspace/immich-build/specimens/millpond-dawn.jpg
+67d57d7b732511f548fa35413de26f01d40fe9c9  /home/hatch/workspace/immich-build/stack/library/upload/c4952bd3-eb78-481f-abf8-2f1fd3bda011/d4/5b/d45b7d87-4902-4bd9-a6f1-13470aaf220f.jpg

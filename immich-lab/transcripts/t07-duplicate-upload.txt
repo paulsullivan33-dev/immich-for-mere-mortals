@@ -1,0 +1,5 @@
+$ curl -s -X POST http://localhost:2283/api/assets (same photo, same deviceAssetId as t03)
+{
+    "status": "duplicate",
+    "id": "29ee7104-dfcd-4672-822c-99949643eb21"
+}
