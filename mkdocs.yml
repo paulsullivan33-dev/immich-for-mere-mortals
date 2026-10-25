@@ -1,6 +1,7 @@
 site_name: Immich for Mere Mortals
 site_description: Plain-language self-hosted photo and video backup with the shape of Google Photos and the files on your own disks. The four moving parts, installing with Docker Compose, phone backup, external libraries, face recognition and search, and the two backups that are not the same job.
 site_url: https://paulsullivan33-dev.github.io/immich-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
 
 # Guides live at the repo root (nice for GitHub browsing).
 # The deploy workflow copies them into docs/ before building.
